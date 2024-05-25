@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h4 class="modal-title">Finition {{nomFinition}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (submit)="submitForm()">
+    <div class="modal-body">
+        <input type="hidden" [(ngModel)]="idFinition" id="idFinition" name="idFinition">
+        <input type="hidden" [(ngModel)]="nomFinition" id="nomFinition" name="nomFinition">
+        <div class="form-group mb-3">
+            <label for="pourcentage" class="col-form-label">Pourcentage %</label>
+            <input type="number" step="0.01" id="pourcentage" [(ngModel)]="pourcentage" class="form-control" name="pourcentage">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+        <input class="btn mb-2 btn-success" type="submit" value="Valider" name="btnValider" />
+    </div>
+  </form>
+</div>

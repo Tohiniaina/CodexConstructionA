@@ -1,0 +1,61 @@
+<main role="main" class="main-content">
+  <div class="container">
+      <div class="col-md-6 offset-md-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Annee</span>
+                </div>
+                <input type="number" class="form-control" placeholder="Saisissez une annee" id="year" name="year" [(ngModel)]="selectedYear" aria-label="Year" aria-describedby="basic-addon1">
+            </div>
+            <div class="text-center m-2">
+                <button class="btn btn-outline-info col-md-3" (click)="loadDataDashboard()">
+                  <div *ngIf="loading" class="spinner"></div>
+                  <div *ngIf="!loading">Voir</div>
+                </button>
+            </div>
+      </div>
+      <div *ngIf="dashboardData">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <p class="mb-0">
+                            <strong class="mb-0 text-uppercase text-muted">Devis</strong>
+                        </p>
+                        <h3>{{dashboardData.sommeDevis | number:'1.2-2' }} Ar</h3>
+                        <p class="text-muted">Somme des devis demander cumule</p>
+                    </div>
+                </div>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <p class="mb-0">
+                            <strong class="mb-0 text-uppercase text-muted">Paiement</strong>
+                        </p>
+                        <h3>{{dashboardData.sommePaimentDevis | number:'1.2-2' }} Ar</h3>
+                        <p class="text-muted">Somme des Paiement Effectuer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                      <div *ngIf="loading" class="spinnerGrand"></div>
+                      <div *ngIf="!loading">
+                        <div style="display: block;">
+                          <canvas baseChart
+                                  [datasets]="barChartData"
+                                  [labels]="barChartLabels"
+                                  [options]="barChartOptions"
+                                  [plugins]="barChartPlugins"
+                                  [legend]="barChartLegend"
+                                  [type]="barChartType">
+                          </canvas>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</main>

@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title">Type Travaux {{nomTravaux}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form (submit)="submitForm()">
+    <div class="modal-body">
+        <input type="hidden" [(ngModel)]="idTravaux" id="idTravaux" name="idTravaux">
+        <div class="form-group mb-3">
+            <label for="pu" class="col-form-label">Prix Unitaire %</label>
+            <input type="number" step="0.01" id="pu" [(ngModel)]="pu" class="form-control" name="pu">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+        <input class="btn mb-2 btn-success" type="submit" value="Valider" name="btnValider" />
+    </div>
+  </form>
+</div>

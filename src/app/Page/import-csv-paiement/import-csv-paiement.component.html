@@ -1,0 +1,69 @@
+<main role="main" class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h2 class="page-title">Import Paiement</h2>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                              <form (ngSubmit)="onSubmit()">
+                                    <div class="form-group mb-3">
+                                        <div class="form-group mb-3">
+                                            <label for="csvpaiement">Paiement (*.csv)</label>
+                                            <input type="file" id="csvpaiement" class="form-control" (change)="onFileChange($event, 'csvpaiement')" accept=".csv" required>
+                                        </div>
+                                    </div>
+                                    <input class="btn btn-success" type="submit" value="Importer" name="btnValider" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true" [class.show]="showModal">
+              <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                  <div *ngIf="resultat; else errorTemplate">
+                    <div class="modal-header">
+                      <div class="icon-box">
+                        <i class="fe fe-check fe-24">&#xE876;</i>
+                      </div>
+                      <h4 class="modal-title w-100">Awesome!</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p class="text-center">{{ message }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-success btn-block" data-bs-dismiss="modal" (click)="closeModal()">OK</button>
+                    </div>
+                  </div>
+                  <ng-template #errorTemplate>
+                    <div class="modal-header">
+                      <div class="icon-box" style="background: #ef513a !important;">
+                        <i class="fe fe-x fe-24">&#xE876;</i>
+                      </div>
+                      <h4 class="modal-title w-100">Sorry!</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p class="text-center">{{ message }}</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-danger btn-block" style="background: #ef513a !important;" data-bs-dismiss="modal" (click)="closeModal()">OK</button>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+
+
+            <div *ngIf="loading" class="spinner-overlay">
+              <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
