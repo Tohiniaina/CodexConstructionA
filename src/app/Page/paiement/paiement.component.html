@@ -1,0 +1,84 @@
+<main role="main">
+
+  <section class="content-head">
+    <div class="page-title text-center p-4 text-white" data-aos="fade">
+      <div class="container position-relative">
+          <h1 class="p-4 text-white">PAIEMENT</h1>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <form id="paiement-form" (ngSubmit)="payerDevis()">
+      <div class="row gy-3 gy-md-4 overflow-hidden mt-2">
+          <div class="col-12">
+              <label for="devis" class="form-label">Devis :</label>
+              <select id="devis" [(ngModel)]="idDevis" name="devis" class="form-control" required data-parsley-trigger="change">
+                      <option *ngFor="let devis of devisList" value="{{devis.id}}">{{devis.ref}}</option>
+              </select>
+          </div>
+
+          <div class="col-12">
+              <label for="date" class="form-label">Date <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" [(ngModel)]="date" name="date" id="date"  data-parsley-trigger="change" required="">
+          </div>
+
+          <div class="col-12">
+              <label for="montant" class="form-label">Montant <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" [(ngModel)]="montant" name="montant" id="montant"  data-parsley-trigger="change" required="">
+          </div>
+
+          <div class="text-center">
+              <!-- <p style="color: orangered">{{error}}</p> -->
+          </div>
+          <div class="col-12">
+              <div class="d-grid">
+                  <button class="btn btn-lg btn-primary" type="submit">Payer</button>
+              </div>
+          </div>
+
+      </div>
+    </form>
+
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true" [class.show]="showModal">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div *ngIf="resultat; else errorTemplate">
+            <div class="modal-header">
+              <div class="icon-box">
+                <i class="fe fe-check fe-24">&#xE876;</i>
+              </div>
+              <h4 class="modal-title w-100">Awesome!</h4>
+            </div>
+            <div class="modal-body">
+              <p class="text-center">{{ message }}</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success btn-block" data-bs-dismiss="modal" (click)="closeModal()">OK</button>
+            </div>
+          </div>
+          <ng-template #errorTemplate>
+            <div class="modal-header">
+              <div class="icon-box" style="background: #ef513a !important;">
+                <i class="fe fe-x fe-24">&#xE876;</i>
+              </div>
+              <h4 class="modal-title w-100">Sorry!</h4>
+            </div>
+            <div class="modal-body">
+              <p class="text-center">{{ message }}</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-danger btn-block" style="background: #ef513a !important;" data-bs-dismiss="modal" (click)="closeModal()">OK</button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="loading" class="spinner-overlay">
+      <div class="spinner"></div>
+    </div>
+
+  </div>
+</main>
